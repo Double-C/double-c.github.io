@@ -2,30 +2,44 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://yoursite.com/404.html</loc>
+    <loc>https://double-c.github.io/2018/08/18/hello-world/</loc>
+    
+    <lastmod>2018-08-20T01:29:49.595Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://double-c.github.io/tags/index.html</loc>
+    
+    <lastmod>2018-08-20T01:29:23.796Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://double-c.github.io/about/index.html</loc>
+    
+    <lastmod>2018-08-20T01:28:19.010Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://double-c.github.io/categories/index.html</loc>
+    
+    <lastmod>2018-08-20T01:19:24.701Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://double-c.github.io/404.html</loc>
     
     <lastmod>2018-08-18T10:03:01.946Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/search/index.html</loc>
+    <loc>https://double-c.github.io/search/index.html</loc>
     
     <lastmod>2018-08-18T10:02:14.415Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/about/index.html</loc>
-    
-    <lastmod>2018-08-18T10:01:19.458Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2018/08/18/hello-world/</loc>
-    
-    <lastmod>2018-08-18T07:04:22.947Z</lastmod>
     
   </url>
   
