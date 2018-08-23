@@ -2,9 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://double-c.github.io/2018/08/22/yii2-learn-note/</loc>
+    
+    <lastmod>2018-08-23T01:24:48.819Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://double-c.github.io/about/index.html</loc>
+    
+    <lastmod>2018-08-22T01:41:21.443Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://double-c.github.io/2018/08/18/hello-world/</loc>
     
-    <lastmod>2018-08-21T02:45:38.033Z</lastmod>
+    <lastmod>2018-08-22T01:19:16.645Z</lastmod>
     
   </url>
   
@@ -12,13 +26,6 @@
     <loc>https://double-c.github.io/tags/index.html</loc>
     
     <lastmod>2018-08-20T01:29:23.796Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://double-c.github.io/about/index.html</loc>
-    
-    <lastmod>2018-08-20T01:28:19.010Z</lastmod>
     
   </url>
   
