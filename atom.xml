@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://double-c.github.io/"/>
-  <updated>2018-08-24T01:40:53.134Z</updated>
+  <updated>2018-08-24T01:43:11.606Z</updated>
   <id>https://double-c.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://double-c.github.io/2018/08/24/refine/"/>
     <id>https://double-c.github.io/2018/08/24/refine/</id>
     <published>2018-08-24T01:37:59.000Z</published>
-    <updated>2018-08-24T01:40:53.134Z</updated>
+    <updated>2018-08-24T01:43:11.606Z</updated>
     
     <content type="html"><![CDATA[<h2 id="哦啦啦"><a href="#哦啦啦" class="headerlink" title="哦啦啦"></a>哦啦啦</h2>]]></content>
     
@@ -37,7 +37,9 @@
       <category term="读书笔记" scheme="https://double-c.github.io/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
     
     
-      <category term="php" scheme="https://double-c.github.io/tags/php/"/>
+      <category term="自律" scheme="https://double-c.github.io/tags/%E8%87%AA%E5%BE%8B/"/>
+    
+      <category term="行动" scheme="https://double-c.github.io/tags/%E8%A1%8C%E5%8A%A8/"/>
     
   </entry>
   
@@ -65,9 +67,9 @@
       <category term="后端开发" scheme="https://double-c.github.io/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
     
     
-      <category term="php" scheme="https://double-c.github.io/tags/php/"/>
-    
       <category term="yii2.0" scheme="https://double-c.github.io/tags/yii2-0/"/>
+    
+      <category term="php" scheme="https://double-c.github.io/tags/php/"/>
     
   </entry>
   
