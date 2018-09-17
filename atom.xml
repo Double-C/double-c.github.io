@@ -178,4 +178,31 @@
     
   </entry>
   
+  <entry>
+    <title>字符编码</title>
+    <link href="https://double-c.github.io/2017/12/17/code-string/"/>
+    <id>https://double-c.github.io/2017/12/17/code-string/</id>
+    <published>2017-12-17T03:59:50.000Z</published>
+    <updated>2018-09-17T04:01:33.035Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="字符编码"><a href="#字符编码" class="headerlink" title="字符编码"></a>字符编码</h2><p>万恶的中文乱码问题归根结底都是编码问题！</p><p>记录爬坑历程。</p><h3 id="ANSI编码"><a href="#ANSI编码" class="headerlink" title="ANSI编码"></a>ANSI编码</h3><p><strong>不同的国家和地区制定了不同的标准</strong> ，由此产生了 GB2312, BIG5, JIS 等各自的编码标准。</p><p>这些使用 2 个字节来代表一个字符的各种汉字延伸编码方式，称为 ANSI 编码。</p><p><strong>在简体中文系统下，ANSI 编码代表 GB2312 编码</strong>  【敲黑板！ T.T 】</p><p>在日文操作系统下，ANSI 编码代表 JIS 编码。</p><p>不同 ANSI 编码之间互不兼容，</p><p>当信息在国际间交流时，无法将属于两种语言的文字，存储在同一段 ANSI 编码的文本中。</p><p>当然对于ANSI编码而言，0x00~0x7F之间的字符，依旧是1个字节代表1个字符。</p><p>这一点是ASNI编码与Unicode编码之间最大也最明显的区别。</p><h3 id="Unicode编码"><a href="#Unicode编码" class="headerlink" title="Unicode编码"></a>Unicode编码</h3><p>Unicode（统一码、万国码、单一码）是一种在计算机上使用的字符编码。</p><p>它为每种语言中的每个字符设定了统一并且唯一的二进制编码，以满足跨语言、跨平台进行文本转换、处理的要求。</p><p>1990年开始研发，1994年正式公布。随着计算机工作能力的增强，Unicode也在面世以来的十多年里得到普及。</p><p>Unicode是国际组织制定的可以容纳世界上所有文字和符号的字符编码方案。</p><p>Unicode用数字0-0x10FFFF来映射这些字符，最多可以容纳1114112个字符，或者说有1114112个码位。</p><p>码位就是可以分配给字符的数字。UTF-8、UTF-16、UTF-32都是将数字转换到程序数据的编码方案。</p><h3 id="UTF-8编码"><a href="#UTF-8编码" class="headerlink" title="UTF-8编码"></a>UTF-8编码</h3><p>UTF-8是UNICODE的一种变长字符编码又称万国码，由Ken Thompson于1992年创建。</p><p>现在已经标准化为RFC 3629。UTF-8用1到6个字节编码UNICODE字符。</p><p>用在网页上可以同一页面显示中文简体繁体及其它语言(如日文，韩文)。</p><h3 id="PHP转换编码"><a href="#PHP转换编码" class="headerlink" title="PHP转换编码"></a>PHP转换编码</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 参数1：当前编码   </span></span><br><span class="line"><span class="comment">// 参数2：目标编码       //IGNORE：忽略识别不了的字符串 继续往下翻译 例如：“-”</span></span><br><span class="line"><span class="comment">// 参数三 ： 转码字符串</span></span><br><span class="line">$string = iconv( <span class="string">"UTF-8"</span>,  <span class="string">"GBK//IGNORE"</span>, $string );</span><br></pre></td></tr></table></figure><h3 id="查看字符编码"><a href="#查看字符编码" class="headerlink" title="查看字符编码"></a>查看字符编码</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$encode = mb_detect_encoding( $string,  <span class="keyword">array</span>(<span class="string">'ASCII'</span>, <span class="string">'UTF-8'</span>, <span class="string">'GB2312'</span>, <span class="string">'GBK'</span>, <span class="string">'BIG5'</span>) );</span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> $encode;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;字符编码&quot;&gt;&lt;a href=&quot;#字符编码&quot; class=&quot;headerlink&quot; title=&quot;字符编码&quot;&gt;&lt;/a&gt;字符编码&lt;/h2&gt;&lt;p&gt;万恶的中文乱码问题归根结底都是编码问题！&lt;/p&gt;
+&lt;p&gt;记录爬坑历程。&lt;/p&gt;
+&lt;h3 id=&quot;ANSI编码&quot;&gt;&lt;a hre
+      
+    
+    </summary>
+    
+      <category term="那些年踩过的坑" scheme="https://double-c.github.io/categories/%E9%82%A3%E4%BA%9B%E5%B9%B4%E8%B8%A9%E8%BF%87%E7%9A%84%E5%9D%91/"/>
+    
+    
+      <category term="人艰不拆" scheme="https://double-c.github.io/tags/%E4%BA%BA%E8%89%B0%E4%B8%8D%E6%8B%86/"/>
+    
+  </entry>
+  
 </feed>
