@@ -2,9 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://double-c.github.io/2018/03/25/php-function/</loc>
+    
+    <lastmod>2018-09-17T03:45:27.758Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://double-c.github.io/2018/05/22/php-unit/</loc>
+    
+    <lastmod>2018-09-17T02:22:01.290Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://double-c.github.io/2018/06/14/ali-ems/</loc>
+    
+    <lastmod>2018-09-17T01:15:02.989Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://double-c.github.io/2018/08/16/php-psr/</loc>
     
-    <lastmod>2018-09-16T04:48:36.586Z</lastmod>
+    <lastmod>2018-09-16T05:06:28.690Z</lastmod>
     
   </url>
   
