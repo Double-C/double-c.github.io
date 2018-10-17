@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://double-c.github.io/"/>
-  <updated>2018-09-25T06:32:03.585Z</updated>
+  <updated>2018-10-17T02:40:08.047Z</updated>
   <id>https://double-c.github.io/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Mac命令行终端下使用shadowsocks翻墙</title>
+    <link href="https://double-c.github.io/2018/10/17/mac-ss-cmd/"/>
+    <id>https://double-c.github.io/2018/10/17/mac-ss-cmd/</id>
+    <published>2018-10-17T01:18:54.000Z</published>
+    <updated>2018-10-17T02:40:08.047Z</updated>
+    
+    <content type="html"><![CDATA[<p>经常在命令行终端下工作的码农们，SS无法正常工作。</p><p>因为在终端下不支持socks5代理，只支持http代理，这就很尴尬了。</p><p>wget、curl、git、brew等命令行工具都会变得很慢。</p><p>苹果在新系统中加入了SIP安全机制</p><p>会阻止第三方程序向系统目录内（/System，/bin，/sbin，/usr(除了/usr/local)）进行写操作，sudo也不行。</p><p>办法是先把SIP关了，等装好软件配置好后再打开SIP。或者改用其他软件。</p><p>因为懒得去把SIP关了开开了关了，找了另外一个软件privoxy。</p><p>它刚好就是安装在/usr/local内，不需要关闭SIP也可以正常使用。</p><ol><li><p><strong>privoxy 安装</strong></p><p>安装很简单，用 brew 安装：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install privoxy</span><br></pre></td></tr></table></figure></li><li><p><strong>privoxy 配置</strong></p><p>打开配置文件 <code>/usr/local/etc/privoxy/config</code>  ：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /usr/local/etc/privoxy/config</span><br></pre></td></tr></table></figure><p>加入下面两项配置：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">listen-address 0.0.0.0:8118</span><br><span class="line">forward-socks5 / localhost:1080 .</span><br></pre></td></tr></table></figure><p>第一行设置 privoxy 监听任意IP地址的8118端口。</p><p>第二行设置本地socks5代理客户端端口。</p><blockquote><p> 注意不要忘了最后有一个空格和点号。</p></blockquote></li><li><p><strong>启动 privoxy</strong></p><p>因为没有安装在系统目录内，所以启动时要打全路径。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /usr/local/sbin/privoxy /usr/local/etc/privoxy/config</span><br></pre></td></tr></table></figure></li><li><p><strong>查看是否启动成功</strong></p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -na | grep 8118</span><br></pre></td></tr></table></figure></li><li><p><strong>privoxy 使用</strong></p><p>在命令行终端输入如下命令，该终端即可翻墙：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export http_proxy='http://localhost:8118'</span><br><span class="line">export https_proxy='http://localhost:8118'</span><br></pre></td></tr></table></figure><p>原理是将 socks5 代理转化成 http 代理给命令行终端使用。</p><p>如果不想使用了取消即可。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">unset http_proxy</span><br><span class="line">unset https_proxy</span><br></pre></td></tr></table></figure></li></ol><h4 id="小技巧"><a href="#小技巧" class="headerlink" title="小技巧"></a>小技巧</h4><p>如果关闭了终端，功能就会失效，如果需要代理一直生效，则可以把上述两行代码添加到 <code>~/.bash_profile</code> 文件最后。</p><blockquote><p>iterm2 的话编辑 <code>~/.zshrc</code> 文件即可。</p></blockquote><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.bash_profile</span><br><span class="line">-----------------------------------------------------</span><br><span class="line">export http_proxy='http://localhost:8118'</span><br><span class="line">export https_proxy='http://localhost:8118'</span><br><span class="line">-----------------------------------------------------</span><br></pre></td></tr></table></figure><p>还可以在 <code>~/.bash_profile</code> 加入开关函数，使用起来更方便。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">function proxy_off()&#123;</span><br><span class="line">    unset http_proxy</span><br><span class="line">    unset https_proxy</span><br><span class="line">    echo -e "已关闭代理"</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function proxy_on() &#123;</span><br><span class="line">    export no_proxy="localhost,127.0.0.1,localaddress,.localdomain.com"</span><br><span class="line">    export http_proxy="http://127.0.0.1:8118"</span><br><span class="line">    export https_proxy=$http_proxy</span><br><span class="line">    echo -e "已开启代理"</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;经常在命令行终端下工作的码农们，SS无法正常工作。&lt;/p&gt;
+&lt;p&gt;因为在终端下不支持socks5代理，只支持http代理，这就很尴尬了。&lt;/p&gt;
+&lt;p&gt;wget、curl、git、brew等命令行工具都会变得很慢。&lt;/p&gt;
+&lt;p&gt;苹果在新系统中加入了SIP安全机制&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+      <category term="运维笔记" scheme="https://double-c.github.io/categories/%E8%BF%90%E7%BB%B4%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="mac" scheme="https://double-c.github.io/tags/mac/"/>
+    
+  </entry>
   
   <entry>
     <title>Laravel 项目开发规范</title>
