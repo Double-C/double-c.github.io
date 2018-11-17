@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://double-c.github.io/"/>
-  <updated>2018-10-25T06:08:25.814Z</updated>
+  <updated>2018-11-17T06:51:56.423Z</updated>
   <id>https://double-c.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Git 配置多用户</title>
+    <link href="https://double-c.github.io/2018/11/17/git-many-accounts/"/>
+    <id>https://double-c.github.io/2018/11/17/git-many-accounts/</id>
+    <published>2018-11-17T06:25:51.000Z</published>
+    <updated>2018-11-17T06:51:56.423Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Git-配置多用户"><a href="#Git-配置多用户" class="headerlink" title="Git 配置多用户"></a>Git 配置多用户</h2><h5 id="场景："><a href="#场景：" class="headerlink" title="场景："></a>场景：</h5><p>当有多个 git 账号时，比如：</p><ul><li>github，用于个人项目的开发</li><li>gogs，公司内部的git</li></ul><h5 id="冲突："><a href="#冲突：" class="headerlink" title="冲突："></a>冲突：</h5><p>如果多个 git 账号邮箱不同的话，就会涉及一个问题</p><p><strong>生成第二个 gitkey 的时候会覆盖第一个的 key</strong> ，导致必然有一个用不了</p><h5 id="解决办法："><a href="#解决办法：" class="headerlink" title="解决办法："></a>解决办法：</h5><p>生成多个不同的公私密钥对，从 config 文件管理它们</p><h4 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h4><p>假设在 <code>~/.ssh</code> 目录下已经存在了一个密钥对：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">id_rsa</span><br><span class="line">id_rsa.pub</span><br></pre></td></tr></table></figure><h5 id="生成Key"><a href="#生成Key" class="headerlink" title="生成Key"></a>生成Key</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C "yourmail@gmail.com"</span><br></pre></td></tr></table></figure><p>这里不要一路回车，我们需要自己<strong>手动填写保存路径</strong>。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Generating public/private rsa key pair.</span><br><span class="line">Enter file in which to save the key (/c/Users/Gary/.ssh/id_rsa): /c/Users/Gary/.ssh/id_rsa_github</span><br></pre></td></tr></table></figure><p>上面我们用 <code>id_rsa_github</code> 文件名来区分原有密钥对，避免被覆盖</p><p>完成之后，我们看到了 <code>~/.ssh</code> 目录下多了两个文件：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">id_rsa_github</span><br><span class="line">id_rsa_github.pub</span><br></pre></td></tr></table></figure></p><h5 id="添加私钥"><a href="#添加私钥" class="headerlink" title="添加私钥"></a>添加私钥</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh-add ~/.ssh/id_rsa</span><br><span class="line">ssh-add ~/.ssh/id_rsa_github</span><br></pre></td></tr></table></figure><blockquote><p>如果提示文件或目录不存在，就使用绝对地址</p></blockquote><h5 id="创建-config-文件"><a href="#创建-config-文件" class="headerlink" title="创建 config 文件"></a>创建 config 文件</h5><p>在 <code>~/.ssh</code> 目录下创建名为  <code>config</code> 的文件</p><p><code>confg</code> 中添加以下内容：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> gitlab</span><br><span class="line">    Host git.iboxpay.com</span><br><span class="line">    HostName git.iboxpay.com</span><br><span class="line">    PreferredAuthentications publickey</span><br><span class="line">    IdentityFile ~/.ssh/id_rsa_gitlab</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> github</span><br><span class="line">    Host github.com</span><br><span class="line">    HostName github.com</span><br><span class="line">    PreferredAuthentications publickey</span><br><span class="line">    IdentityFile ~/.ssh/id_rsa_github</span><br></pre></td></tr></table></figure><p>其中 <code>Host</code> 和 <code>HostName</code> 填写 <code>git</code> 服务器的域名。</p><p><code>IdentityFile</code> 指定私钥的路径。</p><p>如果在 Linux 系统下提示错误：<code>Bad owner or permissions on /home/gary/.ssh/config</code></p><p>证明 config 权限过大，<code>chomd</code> 命令调整：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> chmod 644 ~/.ssh/config</span><br></pre></td></tr></table></figure><p>然后在github和gitlab上添加公钥即可，这里不再多说。</p><h5 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h5><p>比如测试 github：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -vT git@github.com</span><br></pre></td></tr></table></figure><blockquote><p>-v 是输出编译信息</p><p>-T 是测试</p><p>测试不成功时根据编译信息自己去解决问题</p></blockquote><h4 id="git全局用户名和邮箱"><a href="#git全局用户名和邮箱" class="headerlink" title="git全局用户名和邮箱"></a>git全局用户名和邮箱</h4><h5 id="查看"><a href="#查看" class="headerlink" title="查看"></a>查看</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config user.name// 全局用户名</span><br><span class="line">git config user.email// 全局邮箱</span><br></pre></td></tr></table></figure><h5 id="设置"><a href="#设置" class="headerlink" title="设置"></a>设置</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name "username"</span><br><span class="line">git config --global user.email "email"</span><br></pre></td></tr></table></figure><h5 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global --unset user.name</span><br><span class="line">git config --global --unset user.email</span><br></pre></td></tr></table></figure><blockquote><p>如果之前有设置全局用户名和邮箱的话，需要 unset 一下</p></blockquote><h4 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h4><p>然后在不同的仓库下设置局部的用户名和邮箱。</p><p>比如在自己公司git下：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config user.name "yourname" </span><br><span class="line">git config user.email "youremail"</span><br></pre></td></tr></table></figure><p>在自己的github的仓库在执行刚刚的命令一遍即可。</p><p>这样就可以在不同的仓库，已不同的账号登录。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;Git-配置多用户&quot;&gt;&lt;a href=&quot;#Git-配置多用户&quot; class=&quot;headerlink&quot; title=&quot;Git 配置多用户&quot;&gt;&lt;/a&gt;Git 配置多用户&lt;/h2&gt;&lt;h5 id=&quot;场景：&quot;&gt;&lt;a href=&quot;#场景：&quot; class=&quot;headerlink
+      
+    
+    </summary>
+    
+      <category term="后端开发" scheme="https://double-c.github.io/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
+    
+    
+      <category term="git" scheme="https://double-c.github.io/tags/git/"/>
+    
+  </entry>
   
   <entry>
     <title>php反射</title>
