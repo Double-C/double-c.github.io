@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://double-c.github.io/about/index.html</loc>
+    
+    <lastmod>2019-01-03T07:21:12.364Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://double-c.github.io/2018/12/10/good/</loc>
     
     <lastmod>2018-12-10T07:25:37.716Z</lastmod>
@@ -19,13 +26,6 @@
     <loc>https://double-c.github.io/2018/11/17/git-many-accounts/</loc>
     
     <lastmod>2018-11-17T06:51:56.423Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://double-c.github.io/about/index.html</loc>
-    
-    <lastmod>2018-11-02T06:12:03.321Z</lastmod>
     
   </url>
   
