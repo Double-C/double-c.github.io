@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://double-c.github.io/2019/03/26/php-design/</loc>
+    
+    <lastmod>2019-05-13T06:43:35.319Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://double-c.github.io/2018/12/10/good/</loc>
     
     <lastmod>2019-05-13T06:21:49.021Z</lastmod>
@@ -26,13 +33,6 @@
     <loc>https://double-c.github.io/2019/04/23/http-proxy/</loc>
     
     <lastmod>2019-04-23T03:00:13.686Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://double-c.github.io/2019/03/26/php-design/</loc>
-    
-    <lastmod>2019-03-26T09:15:11.133Z</lastmod>
     
   </url>
   
