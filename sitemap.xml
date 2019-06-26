@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://double-c.github.io/2018/11/26/api-doc/</loc>
+    
+    <lastmod>2019-06-26T08:52:05.242Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://double-c.github.io/2019/06/20/my-vps-install/</loc>
     
     <lastmod>2019-06-26T08:45:56.141Z</lastmod>
@@ -54,13 +61,6 @@
     <loc>https://double-c.github.io/2019/01/28/php-design-six-rule/</loc>
     
     <lastmod>2019-02-11T01:17:17.518Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://double-c.github.io/2018/11/26/api-doc/</loc>
-    
-    <lastmod>2018-11-26T01:53:58.200Z</lastmod>
     
   </url>
   
