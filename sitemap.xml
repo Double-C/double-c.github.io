@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://double-c.github.io/about/index.html</loc>
+    
+    <lastmod>2019-11-07T03:38:01.897Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://double-c.github.io/2019/07/05/code-life/</loc>
     
     <lastmod>2019-07-05T09:12:45.606Z</lastmod>
@@ -47,13 +54,6 @@
     <loc>https://double-c.github.io/2019/05/13/hard-to-run/</loc>
     
     <lastmod>2019-05-13T03:41:41.250Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://double-c.github.io/about/index.html</loc>
-    
-    <lastmod>2019-04-23T03:07:12.848Z</lastmod>
     
   </url>
   
